@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body style="background-color: #212121;color: #ffffff;">
+    <ul class="language">
+        <li>JavaScript</li>
+    </ul>
+</body>
+<script>
+    /*
+    This is a simple approach but not an efficient one because every time the function gets executed the whole dom tree gets traversed.
+
+    function addLang(langName){
+       const li =  document.createElement('li')
+       li.innerHTML = `${langName}`
+       document.querySelector('.language').appendChild(li)
+    }
+    addLang("python")
+    addLang("typescript")
+    */
+
+
+
+
+
+/*
+    This approach is more optimized compared to the previous one, as in this case we don't need to traverse the whole tree.
+*/
+
+    function addOptimizedLang (langName){
+
+        const li = document.createElement('li')
+        const addText = document.createTextNode(langName)
+        li.appendChild(addText)
+        document.querySelector('.language').appendChild(li)
+    }
+    addOptimizedLang("python")
+    addOptimizedLang("C++")
+    addOptimizedLang("ReactJs")
+    addOptimizedLang("TypeScript")
+
+
+    // Editing values 
+
+    // selecting the 2nd li element
+
+    const secondLang = document.querySelector("li:nth-child(2)")
+   // secondLang.innerHTML = "Mojo"
+
+    const newli = document.createElement('li')
+    newli.textContent = "Mojo"
+    secondLang.replaceWith(newli)
+
+
+    // replace Javascript with Java
+
+    const firstLang = document.querySelector('li:nth-child(1)')
+    firstLang.outerHTML = '<li>Java</li>'
+
+
+    // Remove -> remove C++ from the list
+
+    const removeCpp = document.querySelector('li:nth-child(3)')
+    removeCpp.remove()
+
+
+</script>
+</html>
