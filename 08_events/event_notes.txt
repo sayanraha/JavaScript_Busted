@@ -1,0 +1,79 @@
+Event Handling:
+
+
+1.	Event Listeners:
+
+•	Events are typically handled using event listeners. An event listener is a function that performs an action in response to a specific event.
+•	You can use the addEventListener method to attach an event listener to an element.
+javascript code
+element.addEventListener(eventType, eventHandler); 
+
+
+2.	Event Object:
+
+•	Event handlers receive an event object as a parameter. This object contains information about the event, such as the type of the event and the target element.
+•	You can access properties like event.type, event.target, etc.
+
+javascript code
+element.addEventListener("click", function(event) { console.log("Event type: " + event.type); console.log("Target element: " + event.target); }); 
+
+
+
+
+
+Common Event Types:
+
+1.	Mouse Events:
+•	click, dblclick: Mouse button is clicked or double-clicked.
+•	mousedown, mouseup: Mouse button is pressed or released.
+•	mousemove: Mouse pointer is moved.
+
+2.	Keyboard Events:
+•	keydown, keyup: A key on the keyboard is pressed or released.
+•	keypress: A key that produces a character value is pressed.
+
+3.	Form Events:
+•	submit: A form is submitted.
+•	change: The value of an input element changes.
+•	focus, blur: An element gains or loses focus.
+
+4.	Window Events:
+•	load: The page has finished loading.
+•	unload: The page is being unloaded (not commonly used).
+•	resize: The browser window is resized.
+•	scroll: The user scrolls the page.
+
+
+
+
+Event Flow:
+1.	Bubbling:
+•	Events bubble up from the target element to the root of the document.
+•	You can use event.stopPropagation() to stop the event from further propagation.
+
+
+2.	Capturing:
+•	Events can be captured on the way down to the target element.
+•	The capturing phase precedes the bubbling phase.
+javascript code
+element.addEventListener("click", function(event) { // Event handling logic event.stopPropagation(); // Stop event from further propagation }, false); // UseCapture set to false (default) for bubbling, true for capturing 
+
+
+
+
+
+Removing Event Listeners:
+
+You can remove an event listener using the removeEventListener method:
+javascriptCopy code
+element.removeEventListener(eventType, eventHandler); 
+
+
+Custom Events:
+
+You can create and dispatch custom events using the CustomEvent constructor:
+javascriptCopy code
+var customEvent = new CustomEvent("customEventType", { detail: { key: "value" } }); element.dispatchEvent(customEvent); 
+
+This is a broad overview, and there are more details and nuances to event handling in JavaScript. Understanding the specific events relevant to your application and how to handle them appropriately is crucial for building interactive and dynamic web applications.
+

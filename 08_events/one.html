@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Events</title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+</body>
+<script>
+    /*
+        Not a good approach
+
+        document.getElementById('owl').onclick = function(){
+            alert('Owl clicked')
+        }
+    */
+
+    // Best approach -> use addEventListners : In JavaScript, the addEventListener method is used to attach an event handler function to an HTML element.
+
+    // Go through these methods
+     // type, timestamp, defaultPrevented
+    // target, toElement, srcElement, currentTarget,
+    // clientX, clientY, screenX, screenY
+    // altkey, ctrlkey, shiftkey, keyCode
+
+
+    
+
+
+    /* Event bubbling will be happening here  -> When an event occurs on an element, it first runs any event handlers attached to that specific element and then bubbles up to its ancestors, triggering their event handlers in sequence.*/
+
+    /*
+        document.getElementById('images').addEventListener('click',(e)=>{
+        console.log('Clicked inside the ul(unordered list)');
+    },true)
+
+
+  document.getElementById('owl').addEventListener('click',()=>{
+        console.log('Owl img clicked')// to stop event bubbling use event propagation
+
+        e.stopPropagation()
+    })
+
+    */
+
+
+
+    // now if we want to show the message of the 'images' id first when clicked on Owl img then the concept of Event capturing comes in.Event capturing is the opposite of event bubbling. It refers to the phase in which events are captured by the outermost ancestor and then propagated down to the target element. In the capturing phase, the event travels from the root of the DOM tree to the target element.
+
+
+    document.getElementById('images').addEventListener('click',(e)=>{
+        console.log('Clicked inside the ul(unordered list)');
+    },true)
+
+    document.getElementById('owl').addEventListener('click',()=>{
+        console.log('Owl img clicked')
+    },true)
+
+    // document.getElementById('google').addEventListener('click',function(e){
+    //     e.preventDefault();
+    //     e.stopPropagation()
+    //     console.log("google clicked");
+    // }, false)
+
+
+    // task -> on clicking the image the image gets dissaperad
+
+
+    document.querySelector('#images').addEventListener('click', function(e){
+        console.log(e.target.tagName);
+        if (e.target.tagName === 'IMG') {
+            console.log(e.target.id);
+            let removeIt = e.target.parentNode
+            removeIt.remove()
+        }
+    
+        
+    })
+    
+    //removeIt.parentNode.removeChild(removeIt)
+
+
+
+</script>
+</html>
